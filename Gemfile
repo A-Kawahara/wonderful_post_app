@@ -47,6 +47,8 @@ group :development do
   gem 'spring'
 
   gem 'rails-i18n', '~> 6.0.0'
+
+  gem 'devise'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
