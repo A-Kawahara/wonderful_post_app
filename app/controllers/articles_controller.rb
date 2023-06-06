@@ -1,12 +1,14 @@
-# require'pry'
+ require'pry'
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[ index show ]
+  before_action :set_article, only: %i[ edit update destroy ]
 
   def index
     @articles = Article.all
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -14,10 +16,12 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+  #  binding.pry
   end
 
   def create
-    @article = Article.new(article_params)
+    #  binding.pry
+    @article = current_user.articles.new(article_params)
 
     if @article.save
         redirect_to article_url(@article), notice: "記事が作成されました。"
@@ -35,18 +39,18 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
-      redirect_to articles_url, notice: "記事が削除されました。"
+      @article.destroy
+        redirect_to articles_url, notice: "記事が削除されました。"
+    end
   end
 
   private
 
   def set_article
-    @article = Article.find(params[:id])
+    @article = current_user.articles.find(params[:id])
   end
 
     # Only allow a list of trusted parameters through.
   def article_params
       params.require(:article).permit(:title, :content)
   end
-end
