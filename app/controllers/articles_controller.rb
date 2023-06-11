@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
 
   def destroy
       @article.destroy
-        redirect_to articles_url, notice: "記事が削除されました。"
+        redirect_to mypage_url, notice: "記事が削除されました。"
     end
   end
 
