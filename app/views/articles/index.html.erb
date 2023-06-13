@@ -8,6 +8,21 @@
 <%
 =end%>
 
+  <div class="set_center_outer container">
+    <div class="set_center_inner">
+      <h6>タイトル</h6>
+        <div class="field">
+          <%= form_tag(articles_path, :method => "get") do %>
+          <%= text_field_tag :title, '' ,:size => '60' %>
+        </div>
+          <div class="actions">
+            <%= submit_tag "検索" ,:title => nil ,class: "btn btn-primary"%>
+          </div>
+    </div>
+  </div>
+  <% end %>
+
+
 <table class="table">
   <thead>
     <tr>

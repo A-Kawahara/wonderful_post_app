@@ -2,8 +2,12 @@ require 'pry'
 class MypageController < ApplicationController
 
   def show
-     @article = current_user.articles.page(params[:page]).per(10)
-    #  binding.pry
+    articles = current_user.articles
+    articles = articles.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+    @articles = articles.page params[:page]
+
+    #  @article = current_user.articles.page(params[:page]).per(10).search(params[:search])
+      # binding.pry
   end
 
 end

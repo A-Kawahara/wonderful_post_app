@@ -2,6 +2,21 @@
 
 <h1>マイページ</h1>
 
+<div class="set_center_outer container">
+    <div class="set_center_inner">
+      <h6>タイトル</h6>
+        <div class="field">
+          <%= form_tag(articles_path, :method => "get") do %>
+          <%= text_field_tag :title, '' ,:size => '60' %>
+        </div>
+          <div class="actions">
+            <%= submit_tag "検索" ,:title => nil ,class: "btn btn-primary"%>
+          </div>
+    </div>
+  </div>
+  <% end %>
+
+
 <%= link_to '記事作成', new_article_path, class: "btn btn-info" %>
 
 <table class="table">
@@ -13,7 +28,7 @@
   </thead>
   <tbody>
 
- <% @article.each do |article| %>
+ <% @articles.each do |article| %>
 
       <tr>
         <td><%= article.title %></td>
@@ -28,4 +43,4 @@
  <% end %>
   </tbody>
 </table>
-<%= paginate(@article) %>
+<%= paginate(@articles) %>
