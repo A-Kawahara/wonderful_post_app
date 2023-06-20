@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     # binding.pry
-    articles = Article.all.includes(:tags)
+    articles = Article.all
     articles = articles.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
     @articles = articles.page(params[:page])
   end
