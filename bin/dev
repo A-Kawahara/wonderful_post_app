@@ -1,8 +1,12 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-if ! gem list foreman -i --silent; then
+if ! foreman version &> /dev/null
+then
   echo "Installing foreman..."
   gem install foreman
 fi
 
-exec foreman start -f Procfile.dev "$@"
+foreman start -f Procfile.dev "$@"
+ 18 changes: 0 additions & 18 deletions18
+bin/webpack
+Marking files as viewed can help keep track of your progress, but will not affect your submitted review
